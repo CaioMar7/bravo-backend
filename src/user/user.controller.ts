@@ -12,4 +12,16 @@ export class UserController {
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
+
+  @IsPublic()
+  @Get('/:email')
+  async show(@Param('email') email: string) {
+      if (email) {
+
+          const user = await this.userService.findByEmail(email)
+
+          return {...user, password: undefined}
+      }
+  }
+
 }

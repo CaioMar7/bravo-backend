@@ -1,15 +1,15 @@
-FROM node:latest
+# Dockerfile para a aplicação NestJS
+FROM node:18
 
-RUN mkdir app
+WORKDIR /app
 
-WORKDIR ./app
-
-COPY package.json .
-
+COPY package*.json ./
 RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN npx prisma migrate dev --name init
+RUN npm run build
 
-CMD ["npm", "run", "start:dev"]
+EXPOSE 3000
+CMD ["node", "dist/main"]
