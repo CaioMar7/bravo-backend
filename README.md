@@ -97,7 +97,9 @@ Siga as etapas abaixo para instalar o projeto:
 3. Crie um arquivo .env na raiz do projeto e configure com o endereço do banco de dados e a chave secreta JWT. Exemplo:
     
     ```bash
-    DATABASE_URL=postgresql://user:password@localhost:5432/seu_banco JWT_SECRET=sua_chave_secreta
+    DATABASE_URL="file:./bravo.db"
+
+    JWT_SECRET=sua_chave_secreta
 
 4. Rode as migrations para criar o banco de dados e as tabelas:
     
